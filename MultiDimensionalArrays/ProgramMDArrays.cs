@@ -2,7 +2,7 @@
 
 namespace MultiDimensionalArrays
 {
-    class Program
+    class ProgramMDArrays
     {
         static void Main(string[] args)
         {
