@@ -4,16 +4,16 @@ namespace MultiDimensionalArrays
 {
     class ProgramMDArrays
     {
-        static int dimensions;
         static int[] dimensionArray;
-        static int[] elements;
-        static int[,] myMDArray;
+        static int elements;
+        static int[,] my2DArray;
+        static int elemDim1;
+        static int elemDim2;
         static void Main(string[] args)
         {
-            dimensions = GetNumbers("Enter number of dimensions in your array: ");
-            dimensionArray = GetArrayFromInt(dimensions);
-            elements = GetNumberOfElements();
-            CreateMDArray();
+            elemDim1 = GetNumberOfElements("Enter number of elements in first dimension: ");
+            elemDim2 = GetNumberOfElements("Enter number of elements in second dimension: ");
+            //CreateMDArray();
 
 
 
@@ -23,63 +23,35 @@ namespace MultiDimensionalArrays
 
         private static void CreateMDArray()
         {
-            myMDArray = new int[,];
+            for (int i = 0; i < my2DArray.GetLength(0); i++)
+                for (int j = 0; j < my2DArray.GetLength(1); j++)
+                {
+                    Console.WriteLine(my2DArray[i,j]);
+                }
         }
 
-        private static int[] GetNumberOfElements()
+        private static int GetNumberOfElements(string askForUserInput)
         {
-            for (int i = 0; i < dimensionArray.Length; i++)
+            for (int i = 1; i < 3; i++)
             {
                 bool isNaN;
                 int value;
-                Console.Write($"Enter number of elements in dimension number {dimensionArray[i]}: ");
-                elements = new int[dimensionArray.Length];
+                Console.Write(askForUserInput);
                 do
                 {
                     isNaN = int.TryParse(Console.ReadLine(), out value);
                     if (isNaN)
                     {
                         Console.Write($"Entered number: {value}\n");
-                        elements[i] = value;
+                        elements = value;
                     } else
                     {
-                        Console.Write("Enter a valid number: ");
+                        Console.Write("Enter a valid integer: ");
                     }
 
                 } while (!isNaN);
             }
             return elements;
-        }
-
-        private static int[] GetArrayFromInt(int dimensions)
-        {
-            dimensionArray = new int[dimensions];
-            for (int i = 1; i <= dimensions; i++)
-            {
-                dimensionArray[i - 1] = i;
-                //Console.WriteLine(dimensionArray[i - 1]);
-            }
-            return dimensionArray;
-        }
-
-        private static int GetNumbers(string askForInput)
-        {
-            Console.Write(askForInput);
-            bool isNaN;
-            int value;
-            do
-            {
-                isNaN = int.TryParse(Console.ReadLine(), out value);
-                if (isNaN)
-                {
-                    Console.Write($"Entered number: {value}\n");
-                }
-                else
-                {
-                    Console.Write("Enter a valid integer: ");
-                }
-            } while (!isNaN);
-            return value;
         }
 
         private static void IterateThroughArray()
