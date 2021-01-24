@@ -4,7 +4,6 @@ namespace MultiDimensionalArrays
 {
     class ProgramMDArrays
     {
-        static int[] dimensionArray;
         static int elements;
         static int[,] my2DArray;
         static int elemDim1;
@@ -13,27 +12,13 @@ namespace MultiDimensionalArrays
         {
             elemDim1 = GetNumberOfElements("Enter number of elements in first dimension: ");
             elemDim2 = GetNumberOfElements("Enter number of elements in second dimension: ");
-            //CreateMDArray();
-
-
-
+            CreateMDArray();
             //IterateThroughArray();
             //PrintOut();
         }
 
-        private static void CreateMDArray()
-        {
-            for (int i = 0; i < my2DArray.GetLength(0); i++)
-                for (int j = 0; j < my2DArray.GetLength(1); j++)
-                {
-                    Console.WriteLine(my2DArray[i,j]);
-                }
-        }
-
         private static int GetNumberOfElements(string askForUserInput)
         {
-            for (int i = 1; i < 3; i++)
-            {
                 bool isNaN;
                 int value;
                 Console.Write(askForUserInput);
@@ -50,8 +35,17 @@ namespace MultiDimensionalArrays
                     }
 
                 } while (!isNaN);
-            }
             return elements;
+        }
+
+        private static void CreateMDArray()
+        {
+            my2DArray = new int[elemDim1, elemDim2];
+            for (int i = 0; i < my2DArray.GetLength(0); i++)
+                for (int j = 0; j < my2DArray.GetLength(1); j++)
+                {
+                    Console.WriteLine(my2DArray[i, j]);
+                }
         }
 
         private static void IterateThroughArray()
